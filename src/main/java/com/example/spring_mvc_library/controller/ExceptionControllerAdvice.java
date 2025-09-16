@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionControllerAdvice {
 
     @ExceptionHandler(NoSuchBookException.class)
-    public ResponseEntity<BookError> handleUserNoSuchException(@NotNull NoSuchBookException e) {
+    public ResponseEntity<BookError> handleNoSuchBookException(@NotNull NoSuchBookException e) {
         BookError bankError = new BookError("404", e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(bankError);
     }

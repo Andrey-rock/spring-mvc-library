@@ -7,7 +7,7 @@ import com.example.spring_mvc_library.exception.NoSuchBookException;
 import com.example.spring_mvc_library.model.Book;
 import com.example.spring_mvc_library.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +20,9 @@ public class BookService {
     private final BookMapper bookMapper;
 
 
-    public List<Book> findAll(int size, int page) {
-        PageRequest pageRequest = PageRequest.of(page - 1, size);
-        return bookRepository.findAll(pageRequest).getContent();
+    public List<Book> findAll(Pageable page) {
+
+        return bookRepository.findAll(page).getContent();
     }
 
     public Book findById(Long id) {

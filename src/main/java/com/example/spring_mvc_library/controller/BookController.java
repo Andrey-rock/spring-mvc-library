@@ -5,6 +5,7 @@ import com.example.spring_mvc_library.dto.BookUp;
 import com.example.spring_mvc_library.model.Book;
 import com.example.spring_mvc_library.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +17,8 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping("/books")
-    public List<Book> getBooks(@RequestParam(name = "size", defaultValue = "3", required = false) int size,
-                               @RequestParam(name = "page", defaultValue = "1", required = false) int page) {
-        return bookService.findAll(size, page);
+    public List<Book> getBooks(Pageable page) {
+        return bookService.findAll(page);
     }
 
     @GetMapping("book/{id}")
